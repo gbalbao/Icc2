@@ -1,20 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-
-void bubble_sort(int *v , int t);
+void bubble_sort(int v[] , int t);
 void selection_sort();
 
-void bubble_sort(int *v, int t){
+void bubble_sort(int v[], int t){
     int flag , x; 
     do{
         flag = 0;
-        for(int i =0; i<t ; i++){
+        for(int i =0; i+1<t ; i++){
+            printf("C %d %d\n", i,i+1 );
             if(v[i] > v[i+1]){
+                printf("T %d %d\n", i, i+1);
                 x = v[i+1];
                 v[i+1] = v[i];
                 v[i] = x;
                 flag++;
+                
             }
         }
         t--;
@@ -37,7 +40,11 @@ void selection_sort(int *v, int t){
 }
 int main()
 {
-    int metodo,tamanho,i,*p; // * significa ponteiro
+    int tamanho,i,*p; // * significa ponteiro
+    char metodo[7];
+
+    printf("Selecione o metodo (selecao ou bolha):\n");
+    scanf("%s", metodo);
 
     printf("Digite o tamanho do vetor:\n");
     scanf("%d" , &tamanho);
@@ -45,18 +52,17 @@ int main()
 
     printf("Digite os elementos do vetor:\n");
     for(i=0 ; i < tamanho ; i++){
-        scanf("%d" , &p+1);
+        scanf("%d" , &p[i]);
     }
 
-    printf("Selecione o metodo (S ou B):\n");
-    scanf("%s", &metodo);
-    if(metodo == 'S' || metodo == 's'){
-        printf("Voce selecionou o metodo 'selection' para a ordenacao do vetor\nAguarde...");
-        //selection_sort()
+
+    if(strcmp(metodo,"selecao")==0){
+        printf("Voce selecionou o metodo 'selecao' para a ordenacao do vetor\nAguarde...\n");
+        selection_sort(p, tamanho);
     }
-    else if (metodo == 'B' || metodo == 'b'){
-    printf("Voce selecionou o metodo 'bubble' para a ordenacao do vetor\nAguarde...");
-    bubble_sort(*p,tamanho);
+    else if (strcmp(metodo,"bolha")==0){
+        printf("Voce selecionou o metodo 'bolha' para a ordenacao do vetor\nAguarde...\n");
+        bubble_sort(p,tamanho);
     }
     else{
         printf("Erro! \nMetodo invalido!");
