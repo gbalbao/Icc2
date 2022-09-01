@@ -3,6 +3,7 @@
 
 
 void bubble_sort(int *v , int t);
+void selection_sort();
 
 void bubble_sort(int *v, int t){
     int flag , x; 
@@ -20,7 +21,20 @@ void bubble_sort(int *v, int t){
     }while(flag!=0);
     }
 
+void selection_sort(int *v, int t){
+	for (int i = 0; i < t; i++) {
 
+		int posicao_menor = i;
+
+		for (int j = i + 1; j < t; j++)
+			if (v[j] < v[posicao_menor])
+				posicao_menor = j;
+		
+		int x = v[i];
+		v[i] = v[posicao_menor];
+		v[posicao_menor] = x;
+    }
+}
 int main()
 {
     int metodo,tamanho,i,*p; // * significa ponteiro
