@@ -1,2 +1,2 @@
 # Icc2
- Curso de icc2 da usp
+Exercício 1 do curso de icc2 da usp
